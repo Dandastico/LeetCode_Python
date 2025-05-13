@@ -30,32 +30,29 @@ def isValid(s):
     :rtype: bool
     """
     brackets = {
-        '(': ')',
-        '[': ']',
-        '{': '}'
-        }
-    valid = False
+        ')' : '(',
+        ']' : '[',
+        '}' : '{'
+    }
+    stk = []
 
-    if len(s) % 2 != 0:
-        return valid
-
-    for i in range(len(s)-1):
-        if s[i] in brackets:
-            for j in range(i+1, len(s)):
-                if s[j] == brackets[s[i]]:
-                    if len(s[i:j+1]) % 2 != 0:
-                        return False
-                    valid = True
-                    break
-                else:
-                    valid = False
-
-    return valid
+    for char in s:
+        if char not in brackets:
+            stk.append(char)
+        else:
+            if not stk:
+                return False
+            else:
+                popped = stk.pop()
+                if popped != brackets[char]:
+                    return False
+                
+    return not stk
                         
 
-print(isValid("()"))
-print(isValid("()[]{}"))
-print(isValid("(]"))
-print(isValid("([])"))
-print(isValid("([)]")) # precisa retonar False porque o colchete não fecha dentro do parênteses
-print(isValid("(){}}{")) # retornar False por causa da última chave
+print(isValid("()")) # True
+print(isValid("()[]{}")) # True
+print(isValid("(]")) # False
+print(isValid("([])")) # True
+print(isValid("([)]")) # False porque o colchete não fecha dentro do parênteses
+print(isValid("(){}}{")) # False por causa da última chave
