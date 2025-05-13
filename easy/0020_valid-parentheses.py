@@ -29,3 +29,12 @@ def isValid(self, s):
     :type s: str
     :rtype: bool
     """
+    open_brackets = ['(', '[', '{']
+    close_brackets = [')', ']', '}']
+    valid = False
+
+    if len(s) % 2 != 0:
+        return valid
+
+    
+                        
