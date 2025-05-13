@@ -24,17 +24,38 @@ Input: s = "([])"
 Output: true
 '''
 
-def isValid(self, s):
+def isValid(s):
     """
     :type s: str
     :rtype: bool
     """
-    open_brackets = ['(', '[', '{']
-    close_brackets = [')', ']', '}']
+    brackets = {
+        '(': ')',
+        '[': ']',
+        '{': '}'
+        }
     valid = False
 
     if len(s) % 2 != 0:
         return valid
 
-    
+    for i in range(len(s)-1):
+        if s[i] in brackets:
+            for j in range(i+1, len(s)):
+                if s[j] == brackets[s[i]]:
+                    if len(s[i:j+1]) % 2 != 0:
+                        return False
+                    valid = True
+                    break
+                else:
+                    valid = False
+
+    return valid
                         
+
+print(isValid("()"))
+print(isValid("()[]{}"))
+print(isValid("(]"))
+print(isValid("([])"))
+print(isValid("([)]")) # precisa retonar False porque o colchete não fecha dentro do parênteses
+print(isValid("(){}}{")) # retornar False por causa da última chave
