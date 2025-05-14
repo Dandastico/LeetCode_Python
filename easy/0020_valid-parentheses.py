@@ -46,7 +46,6 @@ def isValid(s):
                 popped = stk.pop()
                 if popped != brackets[char]:
                     return False
-                
     return not stk
                         
 
