@@ -30,7 +30,7 @@ def find_idx(haystack, needle):
         return err
     
     for i in range(len(haystack)):
-        if (length + i) > (len(haystack) + 1):
+        if (length + i) > (len(haystack)):
             return err
 
         if (length + i) == len(haystack):
