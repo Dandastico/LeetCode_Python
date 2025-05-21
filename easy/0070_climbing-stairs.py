@@ -20,6 +20,11 @@ Explanation: There are three ways to climb to the top.
 '''
 
 def climbStairs(n):
+    if n == 1:
+        return 1
+    if n == 2:
+        return 2
+    
     one, two = 1, 1
 
     for _ in range(n-1):
